@@ -46,6 +46,8 @@ python scripts/test_system_design_suite.py
 
 Each skill also contains its own acceptance script and `evals/evals.json`.
 
+For a short usage guide, see [`docs/skill-kullanim-rehberi.md`](docs/skill-kullanim-rehberi.md).
+
 ## License
 
 MIT
