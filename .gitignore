@@ -5,3 +5,5 @@ __pycache__/
 benchmark.json
 benchmark.md
 feedback.json
+.agents/
+skills-lock.json
