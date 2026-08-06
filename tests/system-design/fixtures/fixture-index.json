@@ -1,0 +1,9 @@
+{
+  "fixtures": [
+    {"id": "low-traffic", "profile": "modular monolith is sufficient; reject Kafka, sharding, multi-region", "expected": ["simple architecture", "complexity rejection"]},
+    {"id": "url-shortener-high-read", "profile": "read-heavy high scale", "expected": ["cache", "peak capacity", "partition reasoning"]},
+    {"id": "ledger-transfer", "profile": "money transfer", "expected": ["strong consistency", "idempotency", "audit", "transaction boundary"]},
+    {"id": "telemetry-ingestion", "profile": "high volume events", "expected": ["async processing", "partitioning when justified"]},
+    {"id": "negative-unit-error", "profile": "conflicting requirement and unit error", "expected": ["validator failure", "unit inconsistency"]}
+  ]
+}

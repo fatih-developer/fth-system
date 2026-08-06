@@ -1,0 +1,7 @@
+interface:
+  display_name: "System Design Validator"
+  short_description: "Validate system designs with applicability-aware rules and evidence-based gates."
+  default_prompt: "Use $system-design-validator to validate this system design and produce SDV findings."
+
+policy:
+  allow_implicit_invocation: true

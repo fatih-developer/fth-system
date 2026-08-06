@@ -1,0 +1,10 @@
+{
+  "skill_name": "workload-capacity-modeler",
+  "evals": [
+    {"id": 1, "prompt": "20 req/s peak alan küçük sipariş uygulaması için baseline/expected/peak/stress kapasite hesabı çıkar.", "expected_output": "Scenario model with simple sizing and no unjustified distributed complexity.", "files": [], "expectations": ["Separates four scenarios", "Shows units and overhead", "Does not force Kafka or sharding"]},
+    {"id": 2, "prompt": "Read-heavy URL shortener için 100:1 read/write, 1 KB payload ve büyüme varsayımlarıyla cache, bandwidth, storage ve concurrency hesabı yap.", "expected_output": "Traceable high-read model with formulas, cache impact, and sensitivity.", "files": [], "expectations": ["Includes cache and read/write calculations", "Includes at least three sensitivity variables", "Links estimates to requirements or assumptions"]},
+    {"id": 3, "prompt": "100000 events/s peak telemetry ingestion için retention, replication ve stress kapasitesini sahte kesinlik kullanmadan modelle.", "expected_output": "Range-aware high-volume capacity model with explicit overhead and horizon.", "files": [], "expectations": ["Shows storage overhead assumptions", "Distinguishes average and peak", "Uses confidence/ranges"]},
+    {"id": 4, "prompt": "Bir ürün adı için marka puanlaması yap.", "expected_output": "Should not trigger capacity modeling.", "files": [], "expectations": ["No capacity model"]},
+    {"id": 5, "prompt": "Mevcut veritabanı indekslerini incele ve composite index öner.", "expected_output": "Should defer to index/query capability.", "files": [], "expectations": ["No invented workload state"]}
+  ]
+}

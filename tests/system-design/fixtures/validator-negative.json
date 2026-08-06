@@ -1,0 +1,7 @@
+{
+  "expected_decision": "FAIL", "contract_version": "1.0", "design_id": "SD-VALIDATOR-NEGATIVE", "mode": "production", "status": "in_progress",
+  "non_functional_requirements": [{"id": "NFR-001", "statement": "p99 under 100 ms", "metric": "p99_ms", "target": 100, "status": "accepted", "source": "fixture", "confidence": "high"}],
+  "assumptions": [{"id": "ASM-001", "statement": "1000 events per minute", "status": "provisional", "source": "fixture", "confidence": "medium"}],
+  "estimates": [{"id": "EST-001", "formula": "1000 / 60", "inputs": "1000 events per minute", "unit": "events/s", "horizon": "one minute", "related_ids": ["ASM-001"], "status": "draft", "source": "fixture", "confidence": "high"}],
+  "decisions": [], "failure_modes": [], "validation_findings": [], "completion_gates": {}
+}

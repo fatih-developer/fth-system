@@ -1,0 +1,10 @@
+{
+  "skill_name": "system-design-case-simulator",
+  "evals": [
+    {"id": 1, "prompt": "20 req/s sipariş sistemi için interview baseline case üret.", "expected_output": "Solution-neutral case with contract identity and rubric.", "files": [], "expectations": ["Supports interview mode", "Does not leak architecture", "Includes rubric"]},
+    {"id": 2, "prompt": "Read-heavy URL shortener için growth_shock varyasyonu üret; request rate değişiminin decision areas'a yansımasını göster.", "expected_output": "Parameterized growth variation with changed decision areas.", "files": [], "expectations": ["Variation is visible", "High scale adds relevant decision areas", "Identity is stable and contract compatible"]},
+    {"id": 3, "prompt": "Ledger production case'inde dependency_outage ve requirement_change varyasyonlarını çalıştırılabilir şekilde tanımla.", "expected_output": "Production case with operational and consistency evaluation dimensions.", "files": [], "expectations": ["Supports production mode", "Includes outage/change variations", "Includes consistency rubric"]},
+    {"id": 4, "prompt": "Bir e-posta imza şablonu yaz.", "expected_output": "Should not trigger case simulation.", "files": [], "expectations": ["No generated design case"]},
+    {"id": 5, "prompt": "Bir SQL migration dosyası oluştur.", "expected_output": "Should defer to migration skill.", "files": [], "expectations": ["No case simulator output"]}
+  ]
+}

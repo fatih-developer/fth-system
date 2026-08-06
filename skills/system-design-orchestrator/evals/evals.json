@@ -1,0 +1,10 @@
+{
+  "skill_name": "system-design-orchestrator",
+  "evals": [
+    {"id": 1, "prompt": "Küçük ekipli bir sipariş uygulamasını requirements'tan validation'a kadar interview modunda koordine et.", "expected_output": "Phased handoffs, bounded questions, simple architecture default, no premature completion.", "files": [], "expectations": ["Defines phase gates", "Distinguishes interview mode", "Does not complete before validation"]},
+    {"id": 2, "prompt": "Ledger transfer sistemini production modunda koordine et; state patch ve capability map üzerinden ilerle.", "expected_output": "Production evidence requirements and consistency/failure/validation routing.", "files": [], "expectations": ["Preserves stable IDs", "Requires failure and validator evidence", "Uses capability routing without direct-call assumptions"]},
+    {"id": 3, "prompt": "Yüksek hacimli telemetry tasarımında mevcut skill bulunamazsa nasıl güvenli fallback yapılacağını göster.", "expected_output": "Fallback contract, risk, open question, and non-complete status.", "files": [], "expectations": ["Provides safe fallback", "Keeps status non-complete", "Limits questions to three"]},
+    {"id": 4, "prompt": "Sadece bir REST endpoint'i için örnek response JSON yaz.", "expected_output": "Should not trigger full system design orchestration.", "files": [], "expectations": ["No lifecycle orchestration"]},
+    {"id": 5, "prompt": "Bir SQLite sorgusuna index ekle.", "expected_output": "Should defer to database/query skills.", "files": [], "expectations": ["No invented phase lifecycle"]}
+  ]
+}

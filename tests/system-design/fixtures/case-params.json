@@ -1,0 +1,1 @@
+{"domain": "url_shortener", "request_rate": 50000, "read_write_ratio": "100:1", "payload_bytes": 1024, "growth": "2x/year", "retention_days": 365, "consistency": "eventual", "mode": "production", "variation": "growth_shock"}

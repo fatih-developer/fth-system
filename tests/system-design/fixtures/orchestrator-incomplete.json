@@ -1,0 +1,4 @@
+{
+  "contract_version": "1.0", "design_id": "SD-ORCH-INCOMPLETE", "mode": "interview", "status": "in_progress",
+  "failure_modes": [], "validation_findings": [], "blocking_questions": ["What is peak traffic?"], "decisions": [], "completion_gates": {"requirements": "PASS", "capacity": "PENDING", "validator": "PENDING"}
+}

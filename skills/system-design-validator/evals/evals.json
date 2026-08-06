@@ -1,0 +1,10 @@
+{
+  "skill_name": "system-design-validator",
+  "evals": [
+    {"id": 1, "prompt": "Bu küçük trafik tasarımını doğrula; gereksiz microservice, Kafka, sharding ve multi-region varsa bul.", "expected_output": "High finding for unjustified complexity or PASS when absent, based on applicability.", "files": ["../../tests/system-design/fixtures/low-traffic.json"], "expectations": ["Uses applicability-aware rule", "Flags unjustified complexity", "Produces SDV finding"]},
+    {"id": 2, "prompt": "Bu telemetry kapasite state'ini birim ve traceability açısından kontrol et.", "expected_output": "Critical finding for per-minute/per-second mismatch.", "files": ["../../tests/system-design/fixtures/negative-unit-error.json"], "expectations": ["Catches unit error", "Uses Critical severity", "Returns FAIL"]},
+    {"id": 3, "prompt": "Failure analysis ve validator PASS kanıtı olan tamamlanmış ledger tasarımını değerlendir.", "expected_output": "PASS only with required gates and evidence.", "files": [], "expectations": ["Does not pass without gates", "Checks failure evidence", "Uses PASS decision only with proof"]},
+    {"id": 4, "prompt": "Bir e-posta metnini daha kısa yaz.", "expected_output": "Should not trigger architecture validation.", "files": [], "expectations": ["No SDV report"]},
+    {"id": 5, "prompt": "Bir mobil uygulama ikonunu yeniden çiz.", "expected_output": "Should not trigger system design validation.", "files": [], "expectations": ["No validator findings"]}
+  ]
+}

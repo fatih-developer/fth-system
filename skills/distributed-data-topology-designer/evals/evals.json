@@ -1,0 +1,10 @@
+{
+  "skill_name": "distributed-data-topology-designer",
+  "evals": [
+    {"id": 1, "prompt": "20 req/s sipariş uygulaması için erişim desenlerine dayalı veri topolojisi ve operation-level consistency tasarla.", "expected_output": "Simple relational topology with explicit invariants and no unjustified sharding.", "files": [], "expectations": ["Maps access patterns", "Defines operation-level consistency", "Rejects unjustified sharding"]},
+    {"id": 2, "prompt": "Para transferi ledger'ı için transaction boundary, idempotency, audit, RPO/RTO ve strong consistency kararlarını yaz.", "expected_output": "Ledger topology with strong consistency and traceable invariants.", "files": [], "expectations": ["States invariant and transaction boundary", "Includes RPO/RTO", "Links decision to requirements"]},
+    {"id": 3, "prompt": "Read-heavy URL shortener için cache/storage/partition key ve hotspot riskini kapasite tahminlerine bağla.", "expected_output": "Access and hotspot-aware topology with trade-offs.", "files": [], "expectations": ["Analyzes hotspot risk", "Separates cache from source of truth", "Records simpler alternative"]},
+    {"id": 4, "prompt": "Bir şiirin kafiye düzenini analiz et.", "expected_output": "Should not trigger data topology design.", "files": [], "expectations": ["No topology proposal"]},
+    {"id": 5, "prompt": "Bir UI bileşeninin renklerini değiştir.", "expected_output": "Should not trigger data topology design.", "files": [], "expectations": ["No database design"]}
+  ]
+}

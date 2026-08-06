@@ -1,0 +1,10 @@
+{
+  "skill_name": "failure-mode-designer",
+  "evals": [
+    {"id": 1, "prompt": "Sipariş oluşturma akışı için timeout, duplicate delivery, dependency outage ve overload failure modelini çıkar.", "expected_output": "FM records with detection, degraded mode, recovery, data impact, and tests.", "files": [], "expectations": ["Covers critical flow", "Includes detection signals", "Does not use blind retry"]},
+    {"id": 2, "prompt": "Para transferinde duplicate request ve partial database failure için idempotency, recovery, audit ve RPO/RTO analizi yap.", "expected_output": "Failure model tied to ledger invariant and recovery targets.", "files": [], "expectations": ["Includes idempotency", "Includes data impact and recovery", "Links to NFR/RPO/RTO"]},
+    {"id": 3, "prompt": "Telemetry ingestion dependency outage ve retry storm senaryolarını test/chaos planıyla birlikte yaz.", "expected_output": "Bounded retry policy and executable chaos scenarios.", "files": [], "expectations": ["Includes backoff, jitter, budget", "Includes detection", "Includes chaos scenario"]},
+    {"id": 4, "prompt": "Bir logo için üç renk varyasyonu öner.", "expected_output": "Should not trigger failure analysis.", "files": [], "expectations": ["No FM records"]},
+    {"id": 5, "prompt": "Bir SQL sorgusunu hızlandır.", "expected_output": "Should defer to query/index capability.", "files": [], "expectations": ["No failure-mode system"]}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "expected_decision": "PASS", "contract_version": "1.0", "design_id": "SD-VALIDATOR-PASS", "mode": "production", "status": "complete",
+  "non_functional_requirements": [{"id": "NFR-001", "statement": "p95 under 300 ms", "metric": "p95_ms", "target": 300, "status": "accepted", "source": "fixture", "confidence": "high"}],
+  "estimates": [{"id": "EST-001", "formula": "rps * payload", "inputs": "100 req/s, 1 KB", "unit": "bytes/s", "horizon": "peak five minutes", "related_ids": ["NFR-001"], "status": "accepted", "source": "fixture", "confidence": "medium"}],
+  "decisions": [], "failure_modes": [{"id": "FM-001", "status": "accepted", "source": "fixture", "confidence": "high"}], "validation_findings": [{"id": "SDV-001", "status": "resolved", "source": "validator", "confidence": "high"}], "completion_gates": {"validator": "PASS"}
+}

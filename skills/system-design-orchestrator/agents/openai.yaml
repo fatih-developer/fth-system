@@ -1,0 +1,7 @@
+interface:
+  display_name: "System Design Orchestrator"
+  short_description: "Coordinate system-design phases through state patches, capability routing, and phase gates."
+  default_prompt: "Use $system-design-orchestrator to coordinate this system design through validation."
+
+policy:
+  allow_implicit_invocation: true

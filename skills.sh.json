@@ -1,0 +1,17 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "System Design",
+      "skills": [
+        "system-design-requirements-framer",
+        "workload-capacity-modeler",
+        "system-design-orchestrator",
+        "distributed-data-topology-designer",
+        "failure-mode-designer",
+        "system-design-validator",
+        "system-design-case-simulator"
+      ]
+    }
+  ]
+}

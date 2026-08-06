@@ -1,0 +1,7 @@
+interface:
+  display_name: "System Design Requirements Framer"
+  short_description: "Frame traceable system requirements, NFRs, assumptions, and critical questions."
+  default_prompt: "Use $system-design-requirements-framer to turn this system problem into a validated requirements state patch."
+
+policy:
+  allow_implicit_invocation: true

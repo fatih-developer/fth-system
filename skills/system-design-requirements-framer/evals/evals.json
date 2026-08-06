@@ -1,0 +1,10 @@
+{
+  "skill_name": "system-design-requirements-framer",
+  "evals": [
+    {"id": 1, "prompt": "Bir ekip içi sipariş takip sistemi için gereksinimleri çıkar; belirsiz kalan yerlerde en fazla üç kritik soru sor.", "expected_output": "Traceable FR/NFR records, explicit assumptions, scope, and <=3 questions.", "files": [], "expectations": ["Uses FR-* and NFR-* IDs", "Separates assumptions from facts", "Asks no more than three critical questions"]},
+    {"id": 2, "prompt": "100 bin cihazdan telemetry alan bir platform için production gereksinim çerçevesi hazırla; latency, retention ve compliance ölçümlerini görünür kıl.", "expected_output": "Production-mode requirements with measurable NFRs and provenance.", "files": [], "expectations": ["Includes measurable NFR targets", "Records retention/compliance constraints", "Preserves contract v1.0"]},
+    {"id": 3, "prompt": "Para transferi ürünü için kapsam, aktörler, akışlar ve kritik non-functional gereksinimleri state patch olarak yaz.", "expected_output": "Financial-flow requirements with explicit idempotency, audit, and consistency questions or assumptions.", "files": [], "expectations": ["Does not claim unsupported facts", "Includes critical safety questions", "Returns a patch envelope"]},
+    {"id": 4, "prompt": "Bir blog yazısı için kısa başlık önerileri üret.", "expected_output": "Should not trigger system design requirements framing.", "files": [], "expectations": ["No system design state patch"]},
+    {"id": 5, "prompt": "Mevcut PostgreSQL sorgularını optimize et ve indeks öner.", "expected_output": "Should defer to database/query optimization capabilities.", "files": [], "expectations": ["Does not invent requirements framing"]}
+  ]
+}

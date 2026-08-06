@@ -1,0 +1,7 @@
+interface:
+  display_name: "Failure Mode Designer"
+  short_description: "Design observable, recoverable failure modes and safe retry behavior."
+  default_prompt: "Use $failure-mode-designer to analyze failure modes and recovery for this system design."
+
+policy:
+  allow_implicit_invocation: true

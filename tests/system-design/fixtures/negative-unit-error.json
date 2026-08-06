@@ -1,0 +1,12 @@
+{
+  "contract_version": "1.0",
+  "design_id": "SD-NEGATIVE-UNIT",
+  "mode": "production",
+  "status": "in_progress",
+  "problem": {"summary": "Telemetry intake", "scope": "ingestion", "actors": ["devices"], "source": "fixture", "confidence": "high"},
+  "functional_requirements": [{"id": "FR-001", "statement": "Accept events", "status": "accepted", "source": "fixture", "confidence": "high"}],
+  "non_functional_requirements": [{"id": "NFR-001", "statement": "p99 under 100 ms", "status": "accepted", "source": "fixture", "confidence": "high"}],
+  "constraints": [], "out_of_scope": [], "assumptions": [{"id": "ASM-001", "statement": "1,000 events per minute", "status": "provisional", "source": "fixture", "confidence": "medium"}],
+  "estimates": [{"id": "EST-001", "statement": "1,000 events per second", "formula": "1000 / 60", "unit": "events/s", "status": "draft", "source": "fixture", "confidence": "high", "related_ids": ["ASM-001"]}],
+  "architecture": {}, "interfaces": [], "data_topology": {}, "decisions": [], "failure_modes": [], "validation_findings": [], "open_questions": [], "traceability": []
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Distributed Data Topology Designer"
+  short_description: "Design access-pattern-driven data placement, consistency, partitioning, and recovery choices."
+  default_prompt: "Use $distributed-data-topology-designer to design the data topology and consistency decisions for this system."
+
+policy:
+  allow_implicit_invocation: true

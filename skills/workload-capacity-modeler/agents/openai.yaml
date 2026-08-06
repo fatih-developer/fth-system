@@ -1,0 +1,7 @@
+interface:
+  display_name: "Workload Capacity Modeler"
+  short_description: "Calculate scenario-based workload, capacity, overhead, and sensitivity estimates."
+  default_prompt: "Use $workload-capacity-modeler to model the workload and capacity for this system design."
+
+policy:
+  allow_implicit_invocation: true

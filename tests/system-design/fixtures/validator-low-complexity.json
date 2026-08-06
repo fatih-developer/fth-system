@@ -1,0 +1,4 @@
+{
+  "expected_decision": "CONDITIONAL", "contract_version": "1.0", "design_id": "SD-VALIDATOR-COMPLEXITY", "mode": "production", "status": "in_progress",
+  "non_functional_requirements": [], "estimates": [], "decisions": [{"id": "DEC-001", "choice": "Kafka event streaming", "status": "draft", "source": "fixture", "confidence": "high"}], "failure_modes": [], "validation_findings": [], "completion_gates": {}
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "System Design Case Simulator"
+  short_description: "Generate parameterized, solution-neutral system-design cases and evaluation rubrics."
+  default_prompt: "Use $system-design-case-simulator to generate a parameterized system-design case."
+
+policy:
+  allow_implicit_invocation: true

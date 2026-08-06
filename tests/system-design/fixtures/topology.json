@@ -1,0 +1,7 @@
+{
+  "contract_version": "1.0",
+  "access_patterns": [{"entity": "ledger_entry", "pattern": "append and account balance read", "related_ids": ["FR-001", "EST-001"]}],
+  "hotspot_analysis": "Account ID is a potential hot key; serialize writes per account and monitor skew before partitioning.",
+  "consistency_by_operation": [{"operation": "post_transfer", "invariant": "debits equal credits", "consistency": "strong", "transaction_boundary": "single ledger transaction", "rpo": "zero committed loss", "rto": "under 15 minutes"}],
+  "decisions": [{"id": "DEC-001", "choice": "single relational ledger with indexed account_id", "rationale": "Workload and invariant fit one transactional boundary", "simpler_alternative": "document store", "tradeoff": "less horizontal write scale but stronger atomicity", "related_ids": ["FR-001", "NFR-001"]}]
+}
