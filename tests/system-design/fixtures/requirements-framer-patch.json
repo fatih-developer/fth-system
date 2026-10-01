@@ -1,13 +1,47 @@
 {
   "contract_version": "1.0",
   "state_patch": {
-    "functional_requirements": [{"id": "FR-002", "statement": "Staff can search orders", "status": "accepted", "source": "user", "confidence": "high"}],
-    "non_functional_requirements": [{"id": "NFR-002", "statement": "Search p95 under 300 ms", "metric": "p95_latency_ms", "target": 300, "status": "accepted", "source": "user", "confidence": "medium"}],
-    "assumptions": [{"id": "ASM-002", "statement": "Staff authenticate through existing identity provider", "status": "provisional", "source": "inference", "confidence": "low"}]
+    "functional_requirements": [
+      {
+        "id": "FR-002",
+        "statement": "Staff can search orders",
+        "status": "accepted",
+        "source": "user",
+        "confidence": "high"
+      }
+    ],
+    "non_functional_requirements": [
+      {
+        "id": "NFR-002",
+        "statement": "Search p95 under 300 ms",
+        "metric": "p95_latency_ms",
+        "target": 300,
+        "status": "accepted",
+        "source": "user",
+        "confidence": "medium",
+        "unit": "ms",
+        "window": "rolling 5 minutes"
+      }
+    ],
+    "assumptions": [
+      {
+        "id": "ASM-002",
+        "statement": "Staff authenticate through existing identity provider",
+        "status": "provisional",
+        "source": "inference",
+        "confidence": "low"
+      }
+    ]
   },
   "handoff_summary": "Requirements framed.",
-  "blocking_questions": ["What is the peak concurrent staff count?"],
-  "remaining_risks": ["Traffic profile is provisional."],
+  "blocking_questions": [
+    "What is the peak concurrent staff count?"
+  ],
+  "remaining_risks": [
+    "Traffic profile is provisional."
+  ],
   "next_recommended_capability": "workload-capacity-modeler",
-  "validation_notes": ["IDs and provenance checked."]
+  "validation_notes": [
+    "IDs and provenance checked."
+  ]
 }

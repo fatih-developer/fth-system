@@ -40,7 +40,12 @@
   "decisions": [],
   "failure_modes": [],
   "validation_findings": [],
-  "open_questions": [],
+  "open_questions": [
+    "Which operations must never lose or duplicate data?",
+    "What is the peak-to-average traffic ratio?",
+    "Which failures may degrade service instead of failing it?",
+    "Who owns on-call response and recovery targets?"
+  ],
   "traceability": [],
   "decision_areas": [
     "requirements and scope",

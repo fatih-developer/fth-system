@@ -1,7 +1,184 @@
 {
-  "expected_decision": "FAIL", "contract_version": "1.0", "design_id": "SD-VALIDATOR-NEGATIVE", "mode": "production", "status": "in_progress",
-  "non_functional_requirements": [{"id": "NFR-001", "statement": "p99 under 100 ms", "metric": "p99_ms", "target": 100, "status": "accepted", "source": "fixture", "confidence": "high"}],
-  "assumptions": [{"id": "ASM-001", "statement": "1000 events per minute", "status": "provisional", "source": "fixture", "confidence": "medium"}],
-  "estimates": [{"id": "EST-001", "formula": "1000 / 60", "inputs": "1000 events per minute", "unit": "events/s", "horizon": "one minute", "related_ids": ["ASM-001"], "status": "draft", "source": "fixture", "confidence": "high"}],
-  "decisions": [], "failure_modes": [], "validation_findings": [], "completion_gates": {}
+  "contract_version": "1.0",
+  "design_id": "SD-VALIDATOR-NEGATIVE",
+  "mode": "production",
+  "status": "in_progress",
+  "owner": "orders team",
+  "problem": {
+    "summary": "Internal order entry",
+    "scope": "order create and read API",
+    "actors": [
+      "staff"
+    ],
+    "source": "fixture",
+    "confidence": "high"
+  },
+  "functional_requirements": [
+    {
+      "id": "FR-001",
+      "statement": "Staff can create orders",
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "high"
+    },
+    {
+      "id": "FR-002",
+      "statement": "Staff can view an order by ID",
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "high"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR-001",
+      "statement": "Order reads p95 under 300 ms",
+      "metric": "p95_read_latency",
+      "target": 300,
+      "unit": "ms",
+      "window": "rolling 5 minutes",
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "high"
+    }
+  ],
+  "constraints": [
+    "small team",
+    "single region"
+  ],
+  "out_of_scope": [
+    "global active-active"
+  ],
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "statement": "1000 events per minute",
+      "status": "provisional",
+      "source": "fixture",
+      "confidence": "medium"
+    }
+  ],
+  "estimates": [
+    {
+      "id": "EST-001",
+      "statement": "Ingest rate",
+      "formula": "events_per_minute / 60",
+      "inputs": {
+        "events_per_minute": {
+          "value": 1000,
+          "unit": "events/min",
+          "source": "ASM-001"
+        }
+      },
+      "value": 16.67,
+      "unit": "events/s",
+      "horizon": "one minute",
+      "scenario": "expected",
+      "related_ids": [
+        "ASM-001",
+        "NFR-001"
+      ],
+      "status": "draft",
+      "source": "fixture",
+      "confidence": "high"
+    }
+  ],
+  "architecture": {
+    "style": "modular monolith",
+    "dependencies": [
+      {
+        "name": "relational database"
+      }
+    ]
+  },
+  "interfaces": [
+    {
+      "name": "POST /orders",
+      "related_ids": [
+        "FR-001"
+      ]
+    },
+    {
+      "name": "GET /orders/{id}",
+      "related_ids": [
+        "FR-002",
+        "NFR-001"
+      ]
+    }
+  ],
+  "data_topology": {
+    "store": "single relational database",
+    "consistency_by_operation": [
+      {
+        "operation": "create_order",
+        "invariant": "order ID is unique and line totals equal order total",
+        "consistency": "strong",
+        "transaction_boundary": "single database transaction",
+        "idempotency": "order_request_id",
+        "related_ids": [
+          "FR-001"
+        ]
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "topic": "architecture style",
+      "choice": "modular monolith with one relational database",
+      "rationale": "20 req/s peak fits one instance with headroom",
+      "simpler_alternative": "none simpler",
+      "tradeoff": "vertical scaling ceiling",
+      "related_ids": [
+        "FR-001",
+        "FR-002",
+        "EST-001"
+      ],
+      "status": "accepted",
+      "source": "orchestrator",
+      "confidence": "high"
+    }
+  ],
+  "failure_modes": [
+    {
+      "id": "FM-001",
+      "dependency": "relational database",
+      "trigger": "database unavailable",
+      "detection": "error rate > 1% for 2 minutes",
+      "recovery": "fail over to standby and replay idempotent requests",
+      "related_ids": [
+        "FR-001",
+        "FR-002",
+        "NFR-001"
+      ],
+      "status": "accepted",
+      "source": "failure-mode-designer",
+      "confidence": "high"
+    }
+  ],
+  "validation_findings": [
+    {
+      "id": "SDV-001",
+      "rule": "SD-R002",
+      "severity": "High",
+      "evidence": "NFR-001 lacked window in previous run",
+      "related_ids": [
+        "NFR-001"
+      ],
+      "status": "resolved",
+      "source": "system-design-validator",
+      "confidence": "high"
+    }
+  ],
+  "open_questions": [],
+  "traceability": [
+    {
+      "from": "NFR-001",
+      "to": [
+        "DEC-001"
+      ],
+      "relation": "satisfied_by"
+    }
+  ],
+  "completion_gates": {}
 }

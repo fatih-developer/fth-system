@@ -26,4 +26,4 @@ Return the standard handoff envelope with `state_patch`, phase/gate status, sele
 
 ## Acceptance checks
 
-Run the bundled `scripts/validate_orchestration.py <state.json>`. A state cannot pass orchestration acceptance when failure modes or validation findings are absent, when completion is asserted without a PASS validator result, or when an advanced complexity decision lacks traceable justification.
+Run the bundled `scripts/validate_orchestration.py <state.json>`. Gates are `requirements`, `capacity`, `topology`, `failure`, and `validator`, valued `PASS`, `CONDITIONAL`, `FAIL`, or `PENDING`, and a gate cannot pass before the one before it. A state cannot pass orchestration acceptance when it is not a full contract state, has dangling references, asserts completion without every gate passing, failure modes, validation findings, and no blocking questions (plus FM owners in production), claims a validator PASS while Critical/High findings are unresolved, or contains an advanced complexity decision without rationale, simpler alternative, rejection reason, operational cost, evolution path, and traceable FR/NFR/ASM/EST evidence.

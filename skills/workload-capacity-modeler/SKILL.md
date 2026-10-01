@@ -15,7 +15,7 @@ Read the bundled `references/contract-v1.md` and `references/handoff-v1.md`. Pre
 
 1. Extract request rate, read/write ratio, payload size, active users, concurrency, growth, retention, availability, and geography. Mark missing inputs as assumptions with ranges.
 2. Create `baseline`, `expected`, `peak`, and `stress` scenarios. Keep average and peak rates separate and state the time window for each.
-3. For every estimate, show formula, inputs, unit, horizon, source, confidence, and sensitivity impact. Keep bytes, bits, seconds, requests, and events dimensionally consistent.
+3. For every estimate, show formula, named inputs with units, declared value and unit, scenario, horizon, source, confidence, and sensitivity impact, following `references/estimate-units-v1.md`. Keep bytes, bits, seconds, requests, and events dimensionally consistent; never hide a unit conversion in a numeric literal.
 4. Model storage as logical payload plus index, metadata, replication, and operational overhead. Model bandwidth in bits/s or bytes/s consistently and identify egress versus ingress.
 5. Model concurrency from arrival rate and latency assumptions; state whether the result is a Little's Law estimate, a limit, or an observed measurement.
 6. Evaluate cache capacity and hit-rate effects only when the access pattern supports caching. Do not infer cache correctness from cache presence.
@@ -28,4 +28,4 @@ Capacity alone does not authorize microservices, Kafka, sharding, or multi-regio
 
 ## Acceptance checks
 
-Run the bundled `scripts/validate_capacity_model.py <model.json>`, the repository's curated-skill validator, and the contract validator. Accept only when all four scenarios exist, every estimate has a formula/unit/inputs/horizon and related ID, average versus peak is explicit, overhead is visible, and at least three sensitivity variables are ranked.
+Run the bundled `scripts/validate_capacity_model.py <model.json>`, the repository's curated-skill validator, and the contract validator. Accept only when all four scenarios exist with a window and the same unit-bearing inputs that never decrease from baseline to stress; every scenario has an estimate; every estimate passes the dimensional check, agrees with its scenario inputs, and links to an FR, NFR, or ASM; average versus peak is explicit; index, metadata, and replication overhead are visible; and at least three distinct sensitivity variables are ranked 1..N.

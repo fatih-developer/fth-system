@@ -1,0 +1,27 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Validate curated skills
+        run: python scripts/validate_curated_skills.py
+      - name: Validate contract fixtures
+        run: python scripts/validate_system_design_contract.py tests/system-design/fixtures/low-traffic.json
+      - name: Run suite regression
+        run: python scripts/test_system_design_suite.py

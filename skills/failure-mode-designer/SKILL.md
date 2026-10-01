@@ -17,4 +17,4 @@ Start from critical user flows and architecture components. Read `references/con
 
 ## Acceptance checks
 
-Run bundled `scripts/validate_failure_modes.py <failure-model.json>`, contract validation, repository validation, and skill-creator quick validation. Accept only when every critical flow has an FM record and every record has detection, recovery, data impact, and an executable test scenario.
+Run bundled `scripts/validate_failure_modes.py <failure-model.json>`, contract validation, repository validation, and skill-creator quick validation. Accept only when every critical flow has an FM record and every record has trigger, blast radius, detection with a numeric threshold, mitigation, degraded mode, recovery, data impact, owner, test scenario, and an FR/NFR link. Retryable failures need backoff, jitter, a numeric budget, an idempotency key, and retryable error classes.

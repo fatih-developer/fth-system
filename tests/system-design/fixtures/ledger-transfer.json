@@ -1,9 +1,74 @@
 {
-  "contract_version": "1.0", "design_id": "SD-LEDGER-TRANSFER", "mode": "production", "status": "in_progress",
-  "problem": {"summary": "Account-to-account money transfer", "scope": "ledger and transfer workflow", "actors": ["account holder", "operator"], "source": "fixture", "confidence": "high"},
-  "functional_requirements": [{"id": "FR-001", "statement": "Transfer value exactly once per idempotency key", "status": "accepted", "source": "fixture", "confidence": "high"}],
-  "non_functional_requirements": [{"id": "NFR-001", "statement": "No committed transfer loses balance invariant", "metric": "invariant_violations", "target": 0, "status": "accepted", "source": "fixture", "confidence": "high"}, {"id": "NFR-002", "statement": "Audit records retained for 7 years", "metric": "retention_years", "target": 7, "status": "accepted", "source": "fixture", "confidence": "high"}],
-  "constraints": ["auditability", "strong consistency"], "out_of_scope": ["credit underwriting"],
-  "assumptions": [{"id": "ASM-001", "statement": "A transfer has one atomic ledger boundary", "status": "provisional", "source": "fixture", "confidence": "high"}],
-  "estimates": [], "architecture": {}, "interfaces": [], "data_topology": {}, "decisions": [], "failure_modes": [], "validation_findings": [], "open_questions": [], "traceability": []
+  "contract_version": "1.0",
+  "design_id": "SD-LEDGER-TRANSFER",
+  "mode": "production",
+  "status": "in_progress",
+  "problem": {
+    "summary": "Account-to-account money transfer",
+    "scope": "ledger and transfer workflow",
+    "actors": [
+      "account holder",
+      "operator"
+    ],
+    "source": "fixture",
+    "confidence": "high"
+  },
+  "functional_requirements": [
+    {
+      "id": "FR-001",
+      "statement": "Transfer value exactly once per idempotency key",
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "high"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR-001",
+      "statement": "No committed transfer loses balance invariant",
+      "metric": "invariant_violations",
+      "target": 0,
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "high",
+      "unit": "violations",
+      "window": "all committed transfers"
+    },
+    {
+      "id": "NFR-002",
+      "statement": "Audit records retained for 7 years",
+      "metric": "retention_years",
+      "target": 7,
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "high",
+      "unit": "years",
+      "window": "from transfer commit"
+    }
+  ],
+  "constraints": [
+    "auditability",
+    "strong consistency"
+  ],
+  "out_of_scope": [
+    "credit underwriting"
+  ],
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "statement": "A transfer has one atomic ledger boundary",
+      "status": "provisional",
+      "source": "fixture",
+      "confidence": "high"
+    }
+  ],
+  "estimates": [],
+  "architecture": {},
+  "interfaces": [],
+  "data_topology": {},
+  "decisions": [],
+  "failure_modes": [],
+  "validation_findings": [],
+  "open_questions": [],
+  "traceability": []
 }

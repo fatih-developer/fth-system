@@ -3,10 +3,104 @@
   "design_id": "SD-NEGATIVE-UNIT",
   "mode": "production",
   "status": "in_progress",
-  "problem": {"summary": "Telemetry intake", "scope": "ingestion", "actors": ["devices"], "source": "fixture", "confidence": "high"},
-  "functional_requirements": [{"id": "FR-001", "statement": "Accept events", "status": "accepted", "source": "fixture", "confidence": "high"}],
-  "non_functional_requirements": [{"id": "NFR-001", "statement": "p99 under 100 ms", "status": "accepted", "source": "fixture", "confidence": "high"}],
-  "constraints": [], "out_of_scope": [], "assumptions": [{"id": "ASM-001", "statement": "1,000 events per minute", "status": "provisional", "source": "fixture", "confidence": "medium"}],
-  "estimates": [{"id": "EST-001", "statement": "1,000 events per second", "formula": "1000 / 60", "unit": "events/s", "status": "draft", "source": "fixture", "confidence": "high", "related_ids": ["ASM-001"]}],
-  "architecture": {}, "interfaces": [], "data_topology": {}, "decisions": [], "failure_modes": [], "validation_findings": [], "open_questions": [], "traceability": []
+  "problem": {
+    "summary": "Telemetry intake",
+    "scope": "ingestion",
+    "actors": [
+      "devices"
+    ],
+    "source": "fixture",
+    "confidence": "high"
+  },
+  "functional_requirements": [
+    {
+      "id": "FR-001",
+      "statement": "Accept events",
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "high"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR-001",
+      "statement": "Sustain 1,000 events/s",
+      "metric": "ingest_rate",
+      "target": 1000,
+      "unit": "events/s",
+      "window": "peak minute",
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "high"
+    }
+  ],
+  "constraints": [],
+  "out_of_scope": [],
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "statement": "1,000 events per minute",
+      "status": "provisional",
+      "source": "fixture",
+      "confidence": "medium"
+    }
+  ],
+  "estimates": [
+    {
+      "id": "EST-001",
+      "statement": "1,000 events per second",
+      "formula": "events_per_minute / 60",
+      "inputs": {
+        "events_per_minute": {
+          "value": 1000,
+          "unit": "events/min",
+          "source": "ASM-001"
+        }
+      },
+      "value": 1000,
+      "unit": "events/s",
+      "horizon": "peak minute",
+      "scenario": "peak",
+      "status": "draft",
+      "source": "fixture",
+      "confidence": "high",
+      "related_ids": [
+        "ASM-001",
+        "NFR-001"
+      ]
+    }
+  ],
+  "architecture": {},
+  "interfaces": [],
+  "data_topology": {},
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "topic": "ingestion buffering",
+      "choice": "synchronous writes to the database",
+      "rationale": "low volume",
+      "related_ids": [
+        "FR-001"
+      ],
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "medium"
+    },
+    {
+      "id": "DEC-002",
+      "topic": "ingestion buffering",
+      "choice": "durable queue in front of the database",
+      "rationale": "burst absorption",
+      "related_ids": [
+        "FR-001"
+      ],
+      "status": "accepted",
+      "source": "fixture",
+      "confidence": "medium"
+    }
+  ],
+  "failure_modes": [],
+  "validation_findings": [],
+  "open_questions": [],
+  "traceability": []
 }

@@ -123,9 +123,11 @@ Skill’ler ortak `system_design_state` ve handoff envelope v1.0 kullanır. Uzma
 
 Tasarım, failure analizi ve validator sonucu olmadan `complete` kabul edilmez. Microservice, sharding, Kafka/event streaming, multi-region veya polyglot persistence kararları ölçülebilir gerekçe ve daha basit alternatif olmadan önerilmez.
 
+Validator kataloğundaki tüm kuralları (SD-R000–SD-R009) uygular. `CONDITIONAL` yalnızca kalan her High bulgu için sahibi belli bir risk kabulü varsa verilir; herhangi bir Critical bulgu veya kabul edilmemiş High bulgu `FAIL` demektir. `EST-*` kayıtları birimli girdiler, formül, değer ve birim taşır; formüller boyutsal olarak hesaplanıp beyan edilen değerle karşılaştırılır. Formüldeki çıplak sayılar (`/ 60`, `* 8`) birim dönüşümü sayılmaz.
+
 ## Doğrulama
 
-Suite’i yerel olarak doğrulamak için:
+Aynı kontroller GitHub Actions'ta her push ve pull request'te çalışır. Suite’i yerel olarak doğrulamak için:
 
 ```bash
 python scripts/validate_curated_skills.py

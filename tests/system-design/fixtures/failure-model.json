@@ -1,8 +1,59 @@
 {
   "contract_version": "1.0",
-  "critical_flows": ["create_order", "read_order"],
+  "critical_flows": [
+    "create_order",
+    "read_order"
+  ],
   "failure_modes": [
-    {"id": "FM-001", "critical_flows": ["create_order"], "trigger": "database timeout", "blast_radius": "new orders delayed", "detection": "db timeout rate > 1% for 5 min", "mitigation": "bounded timeout and circuit breaker", "degraded_mode": "accept idempotent request for retry", "recovery": "replay durable requests after dependency recovery", "data_impact": "no committed order loss; pending requests visible", "test_scenario": "inject database timeout for 10 minutes", "retryable": true, "retry_policy": {"backoff": "exponential", "jitter": "full", "budget": "3 per request", "idempotency": "order_request_id"}},
-    {"id": "FM-002", "critical_flows": ["read_order"], "trigger": "cache outage", "blast_radius": "read latency increases", "detection": "cache error rate > 2%", "mitigation": "bounded origin fallback", "degraded_mode": "serve origin reads", "recovery": "restore cache and warm hot keys", "data_impact": "no source-of-truth loss", "test_scenario": "disable cache cluster and measure origin load", "retryable": false}
+    {
+      "id": "FM-001",
+      "critical_flows": [
+        "create_order"
+      ],
+      "trigger": "database timeout",
+      "blast_radius": "new orders delayed",
+      "detection": "db timeout rate > 1% for 5 min",
+      "mitigation": "bounded timeout and circuit breaker",
+      "degraded_mode": "accept idempotent request for retry",
+      "recovery": "replay durable requests after dependency recovery",
+      "data_impact": "no committed order loss; pending requests visible",
+      "test_scenario": "inject database timeout for 10 minutes",
+      "retryable": true,
+      "retry_policy": {
+        "backoff": "exponential",
+        "jitter": "full",
+        "budget": "3 per request",
+        "idempotency": "order_request_id",
+        "retryable_errors": [
+          "timeout",
+          "connection_reset"
+        ]
+      },
+      "owner": "orders on-call",
+      "related_ids": [
+        "FR-001",
+        "NFR-001"
+      ]
+    },
+    {
+      "id": "FM-002",
+      "critical_flows": [
+        "read_order"
+      ],
+      "trigger": "cache outage",
+      "blast_radius": "read latency increases",
+      "detection": "cache error rate > 2%",
+      "mitigation": "bounded origin fallback",
+      "degraded_mode": "serve origin reads",
+      "recovery": "restore cache and warm hot keys",
+      "data_impact": "no source-of-truth loss",
+      "test_scenario": "disable cache cluster and measure origin load",
+      "retryable": false,
+      "owner": "platform on-call",
+      "related_ids": [
+        "FR-002",
+        "NFR-001"
+      ]
+    }
   ]
 }

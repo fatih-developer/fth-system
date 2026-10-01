@@ -14,3 +14,4 @@ Bu dosya, hedef prompttaki sıralı kabul kapılarının kısa kanıt kaydıdır
 | 2.6 Validator | kabul edildi | Negatif birim, gereksiz complexity ve PASS fixture’ları geçti. |
 | 2.7 Case simulator | kabul edildi | Parametre, dört variation, iki mode ve rubric kabulü geçti. |
 | 3. E2E regression | tamamlandı | `python scripts/test_system_design_suite.py` -> `SYSTEM DESIGN SUITE REGRESSION PASSED`. |
+| 4. Sıkılaştırma | tamamlandı | Validator SD-R000–SD-R009'u uygular; boyutsal birim kontrolü, JSON Schema zorlaması, skill başına negatif mutasyon testleri ve GitHub Actions CI eklendi. |

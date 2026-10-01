@@ -1,4 +1,67 @@
 {
-  "expected_decision": "CONDITIONAL", "contract_version": "1.0", "design_id": "SD-VALIDATOR-COMPLEXITY", "mode": "production", "status": "in_progress",
-  "non_functional_requirements": [], "estimates": [], "decisions": [{"id": "DEC-001", "choice": "Kafka event streaming", "status": "draft", "source": "fixture", "confidence": "high"}], "failure_modes": [], "validation_findings": [], "completion_gates": {}
+  "contract_version": "1.0",
+  "design_id": "SD-VALIDATOR-COMPLEXITY",
+  "mode": "interview",
+  "status": "in_progress",
+  "problem": {
+    "summary": "Internal order tracking",
+    "scope": "web application",
+    "actors": [
+      "staff"
+    ],
+    "source": "fixture",
+    "confidence": "high"
+  },
+  "functional_requirements": [],
+  "non_functional_requirements": [],
+  "constraints": [
+    "small team"
+  ],
+  "out_of_scope": [],
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "statement": "Peak traffic is 20 req/s",
+      "status": "provisional",
+      "source": "fixture",
+      "confidence": "medium"
+    }
+  ],
+  "estimates": [],
+  "architecture": {},
+  "interfaces": [],
+  "data_topology": {},
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "topic": "async messaging",
+      "choice": "Kafka event streaming",
+      "related_ids": [
+        "ASM-001"
+      ],
+      "status": "draft",
+      "source": "fixture",
+      "confidence": "high"
+    }
+  ],
+  "failure_modes": [],
+  "validation_findings": [
+    {
+      "id": "SDV-001",
+      "rule": "SD-R004",
+      "severity": "High",
+      "evidence": "Kafka accepted for an interview exercise",
+      "related_ids": [
+        "DEC-001"
+      ],
+      "status": "risk_accepted",
+      "owner": "interview panel",
+      "risk_acceptance": "Exploring streaming trade-offs is the exercise goal",
+      "source": "system-design-validator",
+      "confidence": "high"
+    }
+  ],
+  "open_questions": [],
+  "traceability": [],
+  "completion_gates": {}
 }

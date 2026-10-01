@@ -1,8 +1,191 @@
 {
   "contract_version": "1.0",
-  "scenarios": {"baseline": {"requests_per_second": 10}, "expected": {"requests_per_second": 30}, "peak": {"requests_per_second": 100}, "stress": {"requests_per_second": 150}},
-  "average_peak_distinction": "Average is expected 30 req/s; peak is 100 req/s over a five-minute window.",
-  "overhead_assumptions": {"index": 0.2, "metadata": 0.1, "replication": 2, "backup": 0.2},
-  "estimates": [{"id": "EST-001", "formula": "peak_rps * payload_bytes * 8", "inputs": {"peak_rps": 100, "payload_bytes": 1024}, "unit": "bits/s", "horizon": "peak five-minute window", "related_ids": ["NFR-001"], "source": "fixture", "confidence": "medium"}],
-  "sensitivity": [{"variable": "peak_rps", "impact": "high"}, {"variable": "payload_bytes", "impact": "medium"}, {"variable": "retention_days", "impact": "high"}]
+  "scenarios": {
+    "baseline": {
+      "window": "steady weekday hour",
+      "inputs": {
+        "request_rate": {
+          "value": 10,
+          "unit": "req/s"
+        },
+        "payload": {
+          "value": 1024,
+          "unit": "bytes/req"
+        }
+      }
+    },
+    "expected": {
+      "window": "average business day",
+      "inputs": {
+        "request_rate": {
+          "value": 30,
+          "unit": "req/s"
+        },
+        "payload": {
+          "value": 1024,
+          "unit": "bytes/req"
+        }
+      }
+    },
+    "peak": {
+      "window": "peak five-minute window",
+      "inputs": {
+        "request_rate": {
+          "value": 100,
+          "unit": "req/s"
+        },
+        "payload": {
+          "value": 1024,
+          "unit": "bytes/req"
+        }
+      }
+    },
+    "stress": {
+      "window": "launch-day five-minute burst",
+      "inputs": {
+        "request_rate": {
+          "value": 150,
+          "unit": "req/s"
+        },
+        "payload": {
+          "value": 1024,
+          "unit": "bytes/req"
+        }
+      }
+    }
+  },
+  "average_peak_distinction": "Average is the expected 30 req/s over a business day; peak is 100 req/s over a five-minute window.",
+  "overhead_assumptions": {
+    "index": 0.2,
+    "metadata": 0.1,
+    "replication": 2,
+    "backup": 0.2
+  },
+  "estimates": [
+    {
+      "id": "EST-001",
+      "statement": "baseline ingress bandwidth",
+      "formula": "request_rate * payload",
+      "inputs": {
+        "request_rate": {
+          "value": 10,
+          "unit": "req/s",
+          "source": "ASM-001"
+        },
+        "payload": {
+          "value": 1024,
+          "unit": "bytes/req"
+        }
+      },
+      "value": 81.92,
+      "unit": "Kbit/s",
+      "horizon": "steady weekday hour",
+      "scenario": "baseline",
+      "related_ids": [
+        "NFR-001",
+        "ASM-001"
+      ],
+      "status": "draft",
+      "source": "fixture",
+      "confidence": "medium"
+    },
+    {
+      "id": "EST-002",
+      "statement": "expected ingress bandwidth",
+      "formula": "request_rate * payload",
+      "inputs": {
+        "request_rate": {
+          "value": 30,
+          "unit": "req/s",
+          "source": "ASM-001"
+        },
+        "payload": {
+          "value": 1024,
+          "unit": "bytes/req"
+        }
+      },
+      "value": 245.76,
+      "unit": "Kbit/s",
+      "horizon": "average business day",
+      "scenario": "expected",
+      "related_ids": [
+        "NFR-001",
+        "ASM-001"
+      ],
+      "status": "draft",
+      "source": "fixture",
+      "confidence": "medium"
+    },
+    {
+      "id": "EST-003",
+      "statement": "peak ingress bandwidth",
+      "formula": "request_rate * payload",
+      "inputs": {
+        "request_rate": {
+          "value": 100,
+          "unit": "req/s",
+          "source": "ASM-001"
+        },
+        "payload": {
+          "value": 1024,
+          "unit": "bytes/req"
+        }
+      },
+      "value": 819.2,
+      "unit": "Kbit/s",
+      "horizon": "peak five-minute window",
+      "scenario": "peak",
+      "related_ids": [
+        "NFR-001",
+        "ASM-001"
+      ],
+      "status": "draft",
+      "source": "fixture",
+      "confidence": "medium"
+    },
+    {
+      "id": "EST-004",
+      "statement": "stress ingress bandwidth",
+      "formula": "request_rate * payload",
+      "inputs": {
+        "request_rate": {
+          "value": 150,
+          "unit": "req/s",
+          "source": "ASM-001"
+        },
+        "payload": {
+          "value": 1024,
+          "unit": "bytes/req"
+        }
+      },
+      "value": 1228.8,
+      "unit": "Kbit/s",
+      "horizon": "launch-day five-minute burst",
+      "scenario": "stress",
+      "related_ids": [
+        "NFR-001",
+        "ASM-001"
+      ],
+      "status": "draft",
+      "source": "fixture",
+      "confidence": "medium"
+    }
+  ],
+  "sensitivity": [
+    {
+      "variable": "request_rate",
+      "impact": "high",
+      "rank": 1
+    },
+    {
+      "variable": "payload",
+      "impact": "medium",
+      "rank": 2
+    },
+    {
+      "variable": "replication",
+      "impact": "medium",
+      "rank": 3
+    }
+  ]
 }

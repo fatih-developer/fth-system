@@ -23,7 +23,7 @@ Use the bundled `references/contract-v1.md` and `references/handoff-v1.md`. Acce
 
 ## Acceptance checks
 
-Run the bundled `scripts/validate_requirements_patch.py <patch.json>` and the repository's curated-skill validator. A patch is accepted only when every requirement has a stable ID, measurable NFR gaps are explicit, assumptions are not presented as facts, question count is at most three, and the contract version is `1.0`.
+Run the bundled `scripts/validate_requirements_patch.py <patch.json>` and the repository's curated-skill validator. A patch is accepted only when the envelope has exactly the seven handoff fields, the patch touches only framer-owned collections, every requirement has a unique stable ID, statement, provenance, and a valid status, every NFR has metric, numeric target, unit, and window or is `needs_measurement` with a `measurement_gap`, inferred assumptions are not marked high confidence, question count is at most three, and the contract version is `1.0`.
 
 ## Handoff
 

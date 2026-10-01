@@ -1,7 +1,45 @@
 {
   "contract_version": "1.0",
-  "access_patterns": [{"entity": "ledger_entry", "pattern": "append and account balance read", "related_ids": ["FR-001", "EST-001"]}],
+  "access_patterns": [
+    {
+      "entity": "ledger_entry",
+      "pattern": "append and account balance read",
+      "related_ids": [
+        "FR-001",
+        "EST-001"
+      ],
+      "operation_type": "read_write",
+      "volume": "peak 200 transfers/s, 2 entries per transfer",
+      "index": "(account_id, posted_at)",
+      "partition_key": "none until single-node write ceiling is reached; account_id when partitioned",
+      "hotspot_risk": "high for merchant accounts"
+    }
+  ],
   "hotspot_analysis": "Account ID is a potential hot key; serialize writes per account and monitor skew before partitioning.",
-  "consistency_by_operation": [{"operation": "post_transfer", "invariant": "debits equal credits", "consistency": "strong", "transaction_boundary": "single ledger transaction", "rpo": "zero committed loss", "rto": "under 15 minutes"}],
-  "decisions": [{"id": "DEC-001", "choice": "single relational ledger with indexed account_id", "rationale": "Workload and invariant fit one transactional boundary", "simpler_alternative": "document store", "tradeoff": "less horizontal write scale but stronger atomicity", "related_ids": ["FR-001", "NFR-001"]}]
+  "consistency_by_operation": [
+    {
+      "operation": "post_transfer",
+      "invariant": "debits equal credits",
+      "consistency": "strong",
+      "transaction_boundary": "single ledger transaction",
+      "rpo": "zero committed loss",
+      "rto": "under 15 minutes",
+      "entity": "ledger_entry",
+      "idempotency": "transfer_request_id"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "choice": "single relational ledger with indexed account_id",
+      "rationale": "Workload and invariant fit one transactional boundary",
+      "simpler_alternative": "document store",
+      "tradeoff": "less horizontal write scale but stronger atomicity",
+      "related_ids": [
+        "FR-001",
+        "NFR-001"
+      ],
+      "topic": "ledger storage"
+    }
+  ]
 }

@@ -1,9 +1,124 @@
 {
   "fixtures": [
-    {"id": "low-traffic", "profile": "modular monolith is sufficient; reject Kafka, sharding, multi-region", "expected": ["simple architecture", "complexity rejection"]},
-    {"id": "url-shortener-high-read", "profile": "read-heavy high scale", "expected": ["cache", "peak capacity", "partition reasoning"]},
-    {"id": "ledger-transfer", "profile": "money transfer", "expected": ["strong consistency", "idempotency", "audit", "transaction boundary"]},
-    {"id": "telemetry-ingestion", "profile": "high volume events", "expected": ["async processing", "partitioning when justified"]},
-    {"id": "negative-unit-error", "profile": "conflicting requirement and unit error", "expected": ["validator failure", "unit inconsistency"]}
+    {
+      "id": "low-traffic",
+      "profile": "modular monolith is sufficient; reject Kafka, sharding, multi-region",
+      "expected": [
+        "simple architecture",
+        "complexity rejection",
+        "validator FAIL while design phases are pending"
+      ]
+    },
+    {
+      "id": "url-shortener-high-read",
+      "profile": "read-heavy high scale",
+      "expected": [
+        "cache",
+        "peak capacity",
+        "partition reasoning"
+      ]
+    },
+    {
+      "id": "ledger-transfer",
+      "profile": "money transfer",
+      "expected": [
+        "strong consistency",
+        "idempotency",
+        "audit",
+        "transaction boundary"
+      ]
+    },
+    {
+      "id": "telemetry-ingestion",
+      "profile": "high volume events",
+      "expected": [
+        "async processing",
+        "partitioning when justified"
+      ]
+    },
+    {
+      "id": "negative-unit-error",
+      "profile": "conflicting decisions and unit error",
+      "expected": [
+        "validator FAIL",
+        "SD-R003 unit inconsistency",
+        "SD-R008 decision conflict"
+      ]
+    },
+    {
+      "id": "validator-pass",
+      "profile": "complete, traced production design",
+      "expected": [
+        "validator PASS",
+        "every applicable rule applied"
+      ]
+    },
+    {
+      "id": "validator-low-complexity",
+      "profile": "unjustified Kafka with an owned risk acceptance",
+      "expected": [
+        "validator CONDITIONAL"
+      ]
+    },
+    {
+      "id": "validator-negative",
+      "profile": "per-minute input reported per second",
+      "expected": [
+        "validator FAIL",
+        "SDV-R003-EST-001"
+      ]
+    },
+    {
+      "id": "orchestrator-incomplete",
+      "profile": "interview state with pending gates",
+      "expected": [
+        "orchestration PASS while in_progress",
+        "FAIL when marked complete"
+      ]
+    },
+    {
+      "id": "capacity-model",
+      "profile": "four scenarios with dimensionally checked estimates",
+      "expected": [
+        "capacity PASS"
+      ]
+    },
+    {
+      "id": "requirements-framer-patch",
+      "profile": "framer handoff envelope",
+      "expected": [
+        "requirements PASS",
+        "handoff schema PASS"
+      ]
+    },
+    {
+      "id": "topology",
+      "profile": "single relational ledger",
+      "expected": [
+        "topology PASS"
+      ]
+    },
+    {
+      "id": "failure-model",
+      "profile": "order create/read failure modes",
+      "expected": [
+        "failure PASS"
+      ]
+    },
+    {
+      "id": "case-params",
+      "profile": "simulator input",
+      "expected": [
+        "regenerates generated-case.json byte-for-byte"
+      ]
+    },
+    {
+      "id": "generated-case",
+      "profile": "simulator output",
+      "expected": [
+        "simulator PASS",
+        "contract PASS"
+      ]
+    }
   ]
 }

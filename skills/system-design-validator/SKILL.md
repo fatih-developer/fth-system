@@ -5,13 +5,13 @@ description: Validate a system design against versioned, applicability-aware rul
 
 # System Design Validator
 
-Validate evidence, not intentions. Read `references/contract-v1.md`, `references/handoff-v1.md`, and `references/rule-catalog-v1.md`. Emit validator findings as `SDV-*` records in a state patch.
+Validate evidence, not intentions. Read `references/contract-v1.md`, `references/handoff-v1.md`, `references/rule-catalog-v1.md`, and `references/estimate-units-v1.md`. Emit validator findings as `SDV-*` records in a state patch.
 
 ## Decision policy
 
-- `FAIL` when any unresolved `Critical`, critical traceability gap, unit inconsistency, or required phase gate is missing.
-- `CONDITIONAL` when unresolved `High` findings remain only with explicit risk acceptance and owner.
-- `PASS` when no unresolved Critical/High findings remain and required gates are satisfied.
+- `FAIL` when any `Critical` finding exists (contract violation, dangling reference, unit inconsistency, missing invariant, conflicting decisions, unmet completion gate), or when a `High` finding has no risk acceptance.
+- `CONDITIONAL` when only `High` findings remain and each one has an explicit risk acceptance with an owner. Critical findings cannot be risk-accepted.
+- `PASS` when no findings remain.
 
 ## Procedure
 
@@ -24,4 +24,4 @@ Validate evidence, not intentions. Read `references/contract-v1.md`, `references
 
 ## Acceptance checks
 
-Run bundled `scripts/validate_design.py <design.json>`. It must catch the negative fixture’s unit mismatch, reject unjustified complexity in the low-traffic fixture, and produce a PASS only for a complete state with failure and validation evidence. Also run repository and skill-creator validation.
+Run bundled `scripts/validate_design.py <design.json> [--expect PASS|CONDITIONAL|FAIL]`. It implements SD-R000 through SD-R009 and prints the decision, `SDV-*` findings, per-rule applicability, and notes. It must catch the negative fixture's unit mismatch and conflicting decisions, fail unjustified complexity unless it is risk-accepted, and produce a PASS only for a complete state with failure and validation evidence. Also run repository and skill-creator validation.

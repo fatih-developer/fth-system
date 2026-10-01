@@ -44,7 +44,9 @@ python scripts/validate_system_design_contract.py tests/system-design/fixtures/l
 python scripts/test_system_design_suite.py
 ```
 
-Each skill also contains its own acceptance script and `evals/evals.json`.
+The same checks run in GitHub Actions on every push and pull request. Each skill also contains its own acceptance script and `evals/evals.json`; the regression suite runs every acceptance script against passing fixtures and targeted mutations that must fail.
+
+`system-design-validator` implements every rule in its catalog (SD-R000 to SD-R009). A design is `CONDITIONAL` only when every remaining High finding has an owned risk acceptance; any Critical finding or unaccepted High finding is `FAIL`. Estimates must declare unit-bearing inputs so formulas are checked dimensionally (see `references/estimate-units-v1.md`).
 
 For a short usage guide, see [`docs/skill-kullanim-rehberi.md`](docs/skill-kullanim-rehberi.md).
 

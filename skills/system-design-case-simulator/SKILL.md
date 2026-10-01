@@ -22,4 +22,4 @@ Support at least `baseline`, `growth_shock`, `dependency_outage`, and `requireme
 
 ## Acceptance checks
 
-Run bundled `scripts/generate_case.py --input <params.json> --output <case.json>` and `scripts/validate_case.py <case.json>`. Acceptance requires four domains, parameter-sensitive decision areas, four variations, both modes, and contract-compatible identity.
+Run bundled `scripts/generate_case.py --input <params.json> --output <case.json>` and `scripts/validate_case.py <case.json>`. The generator rejects unknown or mistyped parameters with exit code 2 and records defaults as `ASM-*` assumptions. Acceptance requires a full contract state, a `design_id` that matches its parameters, parameter-sensitive decision areas, four variations, both modes, at most three questions in interview mode, empty design collections, and no vendor names in the brief.

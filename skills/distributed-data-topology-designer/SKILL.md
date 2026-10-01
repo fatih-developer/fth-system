@@ -19,4 +19,4 @@ Design data placement from workload and invariants, not from fashionable technol
 
 ## Acceptance checks
 
-Run bundled `scripts/validate_topology.py <topology.json>`, contract validation, the repository validator, and skill-creator quick validation. Accept only when access patterns, hotspot analysis, operation-level consistency, and trade-offs are present.
+Run bundled `scripts/validate_topology.py <topology.json>`, contract validation, the repository validator, and skill-creator quick validation. Accept only when every access pattern has entity, pattern, operation type, volume, index, partition key, hotspot risk, and evidence links; every written entity has an operation with invariant, consistency level, transaction boundary, RPO, and RTO (weak levels also need conflict strategy and replication lag); and every decision has topic, rationale, simpler alternative, trade-off, and evidence links, plus rejection reason, operational cost, and evolution path when it distributes data.
